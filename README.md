@@ -1,33 +1,27 @@
 # quick-sorting
 # recursion and quick sorting
 
-#include <iostream>
+#include<iostream>
 
-void quick(int (&nu)[], int l, int r)
+void quick(int nu[], int l, int r)
 {
-  if(l>r)
-  {
-    return ;
-  }
-  int p=nu[(l+r)/2];
-  int i=l,j=r;
+  if(l>r)  return ;
+  int i=l,j=r,p=nu[(l+r)/2];
   while(i<=j)
     {
       while(nu[i]<p)  i++;
       while(nu[j]>p)  j--;
-      if(i<=j)  {std::swap(nu[i],nu[j]);  i++;  j--;}
+      if(i<=j)  {std::swap(nu[i],nu[j]); i++;  j--;}
     }
-  quick(nu,l,j);
   quick(nu,i,r);
+  quick(nu,l,j);
 }
 
-int main()
+int main(void)
 {
-  int l=0, r=9;
-  int nu[10];
-  for(int i=0; i<10; i++)  nu[i]=rand()%11;
-  for(int i=0; i<10; i++)  std::cout<<nu[i]<<'\t';
-  std::cout<<'\n';
+  int n,l=0;  std::cin>>n;
+  int nu[n],r=n-1;
+  for(int i=0; i<n; i++)  std::cin>>nu[i];
   quick(nu,l,r);
-  for(int i=0; i<10; i++)  std::cout<<nu[i]<<'\t';
+  for(int i=0; i<n; i++)  std::cout<<nu[i]<<' ';
 }
